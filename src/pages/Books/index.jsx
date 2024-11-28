@@ -1,13 +1,9 @@
 import { useState, useRef } from "react";
 import { useNavigate } from "react-router";
 import { useFetch } from "@hooks/useFetch";
-import {
-  BASE_COVER_URL,
-  BOOK_IMAGE_KEY_URL,
-  AUTHOR_IMAGE_KEY_URL,
-} from "@common/constants";
 import SearchIcon from "@assets/icons/components/SearchIcon";
 import Item from "./components/Item";
+import Spinner from "@components/Spinner";
 
 export default function Books() {
   const navigate = useNavigate();
@@ -61,21 +57,31 @@ export default function Books() {
                 handleSearch();
               }}
             >
-                <SearchIcon />
+              <SearchIcon />
             </button>
           </div>
         </div>
         <article className="my-8">
           {
             loading ? (
-              <p>Loading...</p>
+              <div className="w-full flex items-center justify-center mt-5">
+                <Spinner />
+              </div>
             ) : (error) ? (
-              <p>Errorcirijillo</p>
+              <div className="w-full flex items-center justify-center mt-5">
+                <h1 className="text-xl font-bold">
+                  Error
+                </h1>
+              </div>
             ) : (
               <div>
                 {
-                  (booksControl.query === "") ? (
-                    <p>Search</p>
+                  (data?.length === 0 && booksControl.query === "") ? (
+                    <div className="w-full flex items-center justify-center mt-5">
+                      <h1 className="text-xl font-bold">
+                        Search a book or an author
+                      </h1>
+                    </div>
                   ) : (booksControl.query !== "" && Array.isArray(data) && data.length === 0) ? (
                     <p>{booksControl.option === "BOOK" ? "Book" : "Author"} not found</p>
                   ) : (

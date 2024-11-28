@@ -1,7 +1,7 @@
 
 export default function Toast({ message, onClose }) {
   return (
-    <div className="fixed bottom-0 left-0 right-0 flex justify-center mb-3">
+    <div className="fixed top-0 right-0 mt-3 mr-3">
       <div className="max-w-xs bg-gray-500 text-sm text-white rounded-md shadow-lg dark:bg-gray-700 mb-3 ml-3" role="alert">
         <div className="flex p-4">
           {message}

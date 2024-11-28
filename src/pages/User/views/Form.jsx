@@ -9,6 +9,7 @@ import {
   onlyNumbersValidator,
 } from "@common/validators";
 import Toast from "@components/Toast";
+import Input from "@components/Input";
 import { useEffect } from "react";
 
 const INPUT_DATE_LIMIT = new Date().toISOString().split("T")[0];
@@ -98,9 +99,14 @@ export default function Form() {
   };
 
   return (
-    <>
-      <form>
-        <input
+    <div className="flex flex-col items-center justify-center">
+      <header className="flex justify-center mb-10">
+        <h1 className="text-2xl font-bold">
+          Register Account
+        </h1>
+      </header>
+      <form className="grid grid-cols-1 md:grid-cols-2 gap-4 rounded-lg w-full max-w-2xl">
+        <Input
           onChange={(e) => {
             if (!onlyLettersValidator(e.target.value)) return;
             handleInputChange(e, "name");
@@ -109,7 +115,7 @@ export default function Form() {
           placeholder="Name"
           type="text"
         />
-        <input
+        <Input
           onChange={(e) => {
             if (!onlyLettersValidator(e.target.value)) return;
             handleInputChange(e, "lastname");
@@ -118,7 +124,7 @@ export default function Form() {
           placeholder="Lastname"
           type="text"
         />
-        <input
+        <Input
           onChange={(e) => {
             if (!onlyNumbersValidator(e.target.value)) return;
             handleInputChange(e, "phone");
@@ -126,8 +132,9 @@ export default function Form() {
           value={form.phone}
           placeholder="Phone number"
           type="text"
+          
         />
-        <input
+        <Input
           onChange={(e) => {
             handleInputChange(e, "email");
           }}
@@ -135,7 +142,7 @@ export default function Form() {
           placeholder="Email"
           type="email"
         />
-        <input
+        <Input
           onChange={(e) => {
             handleInputChange(e, "birthday");
           }}
@@ -144,7 +151,7 @@ export default function Form() {
           placeholder="Birthday"
           type="date"
         />
-        <input
+        <Input
           onChange={(e) => {
             handleInputChange(e, "age");
           }}
@@ -156,6 +163,7 @@ export default function Form() {
         <select
           value={form.genere}
           onChange={(e) => handleInputChange(e, "genere")}
+          className="block w-full max-w-xs px-4 py-2 text-sm font-normal shadow-xs text-gray-900 bg-transparent border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none leading-relaxed"
         >
           <option value="">Select option</option>
           <option value="male">Male</option>
@@ -164,12 +172,22 @@ export default function Form() {
         </select>
         <button
           type="submit"
+          className="block max-w-xs px-2 py-2 text-sm font-normal shadow-xs text-gray-900 bg-transparent border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none leading-relaxed"
           onClick={handleSubmit}
           onKeyDown={(e) => {
             if (e.key === "Enter") {
               handleSubmit(e);
             };
           }}
+          disabled={
+            form.name === "" ||
+            form.lastname === "" ||
+            form.phone === "" ||
+            form.email === "" ||
+            form.birthday === "" ||
+            form.age === "" ||
+            form.genere === ""
+          }
         >
           Save
         </button>
@@ -179,6 +197,6 @@ export default function Form() {
           <Toast message={messageError} onClose={handleCloseToast} />
         )
       }
-    </>
+    </div>
   );
 }
