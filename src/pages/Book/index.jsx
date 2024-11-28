@@ -1,5 +1,5 @@
 import { useLocation } from "react-router";
-import { BASE_COVER_URL } from "@common/constants";
+import { BASE_COVER_URL, BOOK_IMAGE_KEY_URL } from "@common/constants";
 
 export default function Book() {
   const { state } = useLocation();
@@ -14,7 +14,7 @@ export default function Book() {
       <article>
         <img
           alt={title ?? "book-image"}
-          src={`${BASE_COVER_URL}${cover_edition_key ? `olid/${cover_edition_key}` : `id/${cover_i}`}-L.jpg`}
+          src={`${BASE_COVER_URL}${BOOK_IMAGE_KEY_URL}${cover_edition_key ? `olid/${cover_edition_key}` : `id/${cover_i}`}-L.jpg`}
         />
       </article>
     </section>

@@ -9,13 +9,11 @@ const UserContext = createContext({
 
 const UserProvider = ({ children }) => {
   const userData = localStorage.getItem('user') ? JSON.parse(localStorage.getItem('user') || '{}') : null;
-  const navigate = useNavigate();
   const [user, setUser] = useState(userData);
 
   const register = (userForm) => {
     setUser(userForm);
     localStorage.setItem('user', JSON.stringify(userForm));
-    // navigate("/user");
   }
 
   const unregister = () => {

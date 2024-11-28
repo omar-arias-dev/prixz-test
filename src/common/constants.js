@@ -1,4 +1,10 @@
-export const BASE_URL = "https://openlibrary.org/search.json";
+export const BOOK_SEARCH_OPTION = "BOOK";
+export const AUTHOR_SEARCH_OPTION = "AUTHOR";
+export const BASE_URL = "https://openlibrary.org/search";
+export const BOOK_URL = ".json";
+export const AUTHOR_URL = "/authors.json";
 export const LIMIT = 10;
 export const FIELDS = ["key", "title", "author_name", "first_sentence", "ratings_average", "cover_edition_key", "cover_i", "subject", "person"];
-export const BASE_COVER_URL = "https://covers.openlibrary.org/b/";
+export const BASE_COVER_URL = "https://covers.openlibrary.org";
+export const BOOK_IMAGE_KEY_URL = "/b/";
+export const AUTHOR_IMAGE_KEY_URL = "/a/";
