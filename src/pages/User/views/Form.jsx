@@ -24,7 +24,7 @@ export default function Form() {
   const { register } = useUser();
   const [form, setForm] = useState({
     name: "",
-    lastname: "",
+    lastName: "",
     phone: "",
     email: "",
     birthday: "",
@@ -61,9 +61,9 @@ export default function Form() {
       handleShowToast();
       return;
     }
-    if (!lastnameValidator(form.lastname) || !form.lastname) {
-      console.error("Error lastname");
-      setMessageError("Error at lastname field. Valid lastname.");
+    if (!lastnameValidator(form.lastName) || !form.lastName) {
+      console.error("Error lastName");
+      setMessageError("Error at lastName field. Valid lastName.");
       handleShowToast();
       return;
     }
@@ -118,9 +118,9 @@ export default function Form() {
         <Input
           onChange={(e) => {
             if (!onlyLettersValidator(e.target.value)) return;
-            handleInputChange(e, "lastname");
+            handleInputChange(e, "lastName");
           }}
-          value={form.lastname}
+          value={form.lastName}
           placeholder="Lastname"
           type="text"
         />
@@ -181,7 +181,7 @@ export default function Form() {
           }}
           disabled={
             form.name === "" ||
-            form.lastname === "" ||
+            form.lastName === "" ||
             form.phone === "" ||
             form.email === "" ||
             form.birthday === "" ||
