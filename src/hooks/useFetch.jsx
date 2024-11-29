@@ -9,7 +9,6 @@ import {
 } from "@common/constants";
 
 export const useFetch = (query = null, page = 1, option = BOOK_SEARCH_OPTION) => {
-  console.log({query, page, option})
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);

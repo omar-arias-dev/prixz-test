@@ -4,6 +4,7 @@ import { useFetch } from "@hooks/useFetch";
 import SearchIcon from "@assets/icons/components/SearchIcon";
 import Item from "./components/Item";
 import Spinner from "@components/Spinner";
+import NavigationButtons from "./components/NavigationButtons";
 
 export default function Books() {
   const navigate = useNavigate();
@@ -108,6 +109,13 @@ export default function Books() {
             )
           }
         </article>
+        {
+          (booksControl.option === "BOOK" && booksControl?.query !== "" && booksControl?.option !== "" && !loading) && (
+            <div className="w-full flex items-center justify-center">
+              <NavigationButtons onPageChange={handlePageChange} page={booksControl?.page} data={data ?? []} />
+            </div>
+          )
+        }
       </section>
     </>
   );

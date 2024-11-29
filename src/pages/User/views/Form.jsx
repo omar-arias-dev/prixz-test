@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useUser } from "@context/user";
 import {
   cellphoneValidator,
@@ -10,9 +10,11 @@ import {
 } from "@common/validators";
 import Toast from "@components/Toast";
 import Input from "@components/Input";
-import { useEffect } from "react";
 
-const INPUT_DATE_LIMIT = new Date().toISOString().split("T")[0];
+const INPUT_DATE_MAX_LIMIT = new Date().toISOString().split("T")[0];
+const today = new Date();
+const minDate = new Date(today.setFullYear(today.getFullYear() - 120));
+const INPUT_DATE_MIN_LIMIT = minDate.toISOString().split("T")[0];
 
 function calculateAge(birthday) {
   var ageDifMs = Date.now() - birthday;
@@ -147,7 +149,8 @@ export default function Form() {
             handleInputChange(e, "birthday");
           }}
           value={form.birthday}
-          max={INPUT_DATE_LIMIT}
+          max={INPUT_DATE_MAX_LIMIT}
+          min={INPUT_DATE_MIN_LIMIT}
           placeholder="Birthday"
           type="date"
         />
