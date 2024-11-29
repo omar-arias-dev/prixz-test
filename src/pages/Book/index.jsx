@@ -5,6 +5,8 @@ import Badge from "@components/Badge";
 import CharacterIcon from "@assets/icons/components/CharacterIcon";
 import ArrowReturnIcon from "@assets/icons/components/ArrowReturnIcon";
 
+const truncateString = (str, maxLength) =>  str.length > maxLength ? str.slice(0, maxLength - 3) + '...' : str;
+
 export default function Book() {
   const navigate = useNavigate();
   const { state } = useLocation();
@@ -81,7 +83,7 @@ export default function Book() {
             </div>
             <div className="order-2 md:order-none hidden md:block">
               <p>
-                <i>"{first_sentence}"</i>
+                <i>"{truncateString(first_sentence?.[0], 200)}"</i>
               </p>
             </div>
           </div>

@@ -16,12 +16,16 @@ export default function Books() {
     option: "",
   });
   const { data, loading, error } = useFetch(booksControl.query, booksControl.page, booksControl.option);
+  const [searchEnabled, setSearchEnabled] = useState(false);
 
   const handleSearch = () => setBooksControl((prev) => ({ ...prev, query: inputRef.current.value, page: 1, option: selectRef.current.value }));
   const handlePageChange = (direction) => setBooksControl((prev) => ({ ...prev, page: prev.page + direction, option: selectRef.current.value }));
-  const handleSendToBookDetailsClick = (book) => {
-    navigate("/book", { state: book });
-  }
+  const handleSendToBookDetailsClick = (book) => navigate("/book", { state: book });
+  const handleInputChange = () => {
+    const inputValue = inputRef.current?.value.trim();
+    const selectValue = selectRef.current?.value;
+    setSearchEnabled(!!inputValue && !!selectValue);
+  };
 
   return (
     <>
@@ -32,7 +36,7 @@ export default function Books() {
       </header>
       <section className="mt-4">
         <div className="flex justify-evenly items-center w-full">
-          <select className="block px-4 py-2 text-sm font-normal shadow-xs text-gray-900 bg-transparent border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none leading-relaxed" ref={selectRef}>
+          <select onChange={handleInputChange} className="block px-4 py-2 text-sm font-normal shadow-xs text-gray-900 bg-transparent border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none leading-relaxed" ref={selectRef}>
             <option value="">Choose search option</option>
             <option value="AUTHOR">Author</option>
             <option value="BOOK">Book</option>
@@ -49,10 +53,11 @@ export default function Books() {
                   handleSearch();
                 }
               }}
+              onChange={handleInputChange}
               className="block w-full max-w-xs px-4 py-2 text-sm font-normal shadow-xs text-gray-900 bg-transparent border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none leading-relaxed"
             />
             <button
-              className="block max-w-xs px-2 py-2 text-sm font-normal shadow-xs text-gray-900 bg-transparent border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none leading-relaxed"
+              className={`block max-w-xs px-2 py-2 text-sm font-normal shadow-xs text-gray-900 bg-transparent border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none leading-relaxed ${searchEnabled ? "" : "bg-slate-300"}`}
               onClick={() => {
                 if (!selectRef.current.value) return;
                 handleSearch();

@@ -1,8 +1,20 @@
-# React + Vite
+# Proyecto Frontend React y Tailwind CSS
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Buscador de libros y de autores.
 
-Currently, two official plugins are available:
+## Requisitos
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Asegúrate de tener instalados los siguientes programas antes de comenzar:
+
+- Bash
+- Git
+- Node.js
+- PNPM de preferencia. Sino cualquier otro manejador de paquetes
+
+## Instrucciones de Configuración
+
+1. Clona el proyecto con SSH: ```git@github.com:omar-arias-dev/prixz-test.git```.
+2. Posicionate dentro de la carpeta del proyecto.
+3. Ejecuta el comando ```pnpm install```.
+4. Una vez descargadas las dependencias, correr el proyecto con ```pnpm run dev```
+
